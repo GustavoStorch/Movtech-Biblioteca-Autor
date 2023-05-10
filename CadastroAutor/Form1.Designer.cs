@@ -185,7 +185,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCadAutor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Novo Usuário";
+            this.Text = "Novo Autor";
             this.Load += new System.EventHandler(this.FormCadAutor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosAutor)).EndInit();
             this.ResumeLayout(false);
