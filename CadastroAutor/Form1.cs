@@ -23,9 +23,6 @@ namespace CadastroAutor
 
         public byte[] foto { get; set; }
 
-        private SqlConnection conn;
-        private bool btnAtivo;
-
         public FormCadAutor()
         {
             InitializeComponent();
@@ -35,31 +32,10 @@ namespace CadastroAutor
         {
             InitializeTable();
             CarregaID();
-            btnAtivo = false;
-            botaoAtivado();
+            btnExcluir.Enabled = false;
         }
 
-        //Cria a conexão com o banco de dados.
-        private SqlConnection Conexao()
-        {
-            conn = new SqlConnection(@"Data Source=localhost\sqlexpress;Initial Catalog=Treinamento;Integrated Security=True");
-            return conn;
-        }
-
-        //Método para ativar ou desativar o botão de excluir do usuário.
-        private void botaoAtivado()
-        {
-            if (btnAtivo)
-            {
-                btnExcluir.Enabled = true;
-            }
-            else
-            {
-                btnExcluir.Enabled = false;
-            }
-        }
-
-        private void btnImgAutor_click(object sender, EventArgs e)
+        /*private void btnImgAutor_click(object sender, EventArgs e)
         {
             carregarFoto();
         }
@@ -99,16 +75,67 @@ namespace CadastroAutor
                 return null;
             }
             
-        }
+        }*/
 
         //Botão com a funcionalidade de salvar/persistir os dados inseridos no banco de dados.
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            conn = Conexao();
-            String sql;
-            byte[] foto = GetFoto(caminhoFoto);
+
+            if (string.IsNullOrEmpty(txtCodigo.Text) || string.IsNullOrWhiteSpace(txtCodigo.Text))
+            {
+                MessageBox.Show("Informe o campo do Código do Autor");
+                return;
+            } else if (string.IsNullOrEmpty(txtNome.Text) || string.IsNullOrWhiteSpace(txtNome.Text))
+            {
+                MessageBox.Show("Informe o campo do Nome do Autor");
+                return;
+            }
 
             try
+            {
+                using(SqlConnection connection = DaoConnection.GetConexao())
+                {
+                    AutorDAO dao = new AutorDAO(connection);
+
+                    string sql2 = "SELECT COUNT(*) FROM mvtBibAutor WHERE codAutor = @codAutor";
+                    SqlCommand cmdSelect = new SqlCommand(sql2, connection);
+                    cmdSelect.Parameters.AddWithValue("@codAutor", txtCodigo.Text);
+                    int count = Convert.ToInt32(cmdSelect.ExecuteScalar());
+
+                    if(count > 0)
+                    {
+                        dao.Editar(new AutorModel()
+                        {
+                            CodAutor = txtCodigo.Text,
+                            NomeAutor = txtNome.Text,
+                            Descricao = txtInfoAutor.Text
+                        });
+
+                    } else
+                    {
+                        dao.Salvar(new AutorModel()
+                        {
+                            CodAutor = txtCodigo.Text,
+                            NomeAutor = txtNome.Text,
+                            Descricao = txtInfoAutor.Text
+                        });
+                    }
+                    MessageBox.Show("Autor salvo com sucesso!");
+                }
+
+                    
+                InitializeTable();
+                limparForm();
+                CarregaID();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Houve um problema ao salvar o usuário!\n{ex.Message}");
+            }
+
+
+
+            /*try
             {
                 //Verifica se o campo do código está vazio e realiza o insert.
                 if (string.IsNullOrEmpty(this.txtCodigo.Text))
@@ -214,40 +241,36 @@ namespace CadastroAutor
             finally
             {
                 conn.Close();
-            }
+            }*/
         }
 
         //Botão que realiza o Delete de um registro no banco de dados.
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            conn = Conexao();
-            String sql = "DELETE mvtBibAutor WHERE codAutor = @codAutor";
+            if (string.IsNullOrEmpty(txtNome.Text))
+            {
+                MessageBox.Show("Informe o Autor!");
+                return;
+            }
 
             try
             {
-                SqlCommand c = new SqlCommand(sql, conn);
-
-                c.Parameters.AddWithValue("@codAutor", txtCodigo.Text);
-
-                conn.Open();
-                c.ExecuteNonQuery();
-                conn.Close();
-
-                limparForm();
+                using (SqlConnection connection = DaoConnection.GetConexao())
+                {
+                    AutorDAO dao = new AutorDAO(connection);
+                    dao.Excluir(new AutorModel()
+                    {
+                        CodAutor = txtCodigo.Text 
+                    });
+                }
+                MessageBox.Show("Autor excluído com sucesso!");
                 InitializeTable();
+                limparForm();
                 CarregaID();
-                btnAtivo = false;
-                botaoAtivado();
-
-                MessageBox.Show("Excluído com sucesso!");
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu o erro: " + ex);
-            }
-            finally
-            {
-                conn.Close();
+                MessageBox.Show($"Houve um problema ao excluir o Autor!\n{ex.Message}");
             }
         }
 
@@ -257,57 +280,47 @@ namespace CadastroAutor
             txtCodigo.Text = String.Empty;
             txtInfoAutor.Text = String.Empty;
             txtNome.Text = String.Empty;
-            imgAutor.Image = null;
 
         }
 
         //Carrega todos os registros contidos no banco de dados para a DataGridView.
         private void InitializeTable()
         {
-            conn = Conexao();
-            String sql = "SELECT codAutor AS Código, nomeAutor AS Nome, descricao AS InfoAutor FROM mvtBibAutor ORDER BY Código";
-
-            try
+            dtgDadosAutor.Rows.Clear();
+            using(SqlConnection connection = DaoConnection.GetConexao())
             {
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-
-                conn.Open();
-                da.Fill(ds);
-                gridInfoAutor.DataSource = ds.Tables[0];
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Ocorreu o erro: " + ex);
-            }
-            finally
-            {
-                conn.Close();
+                AutorDAO dao = new AutorDAO(connection);
+                List<AutorModel> autores = dao.GetAutores();
+                foreach(AutorModel autor in autores) {
+                    DataGridViewRow row = dtgDadosAutor.Rows[dtgDadosAutor.Rows.Add()];
+                    row.Cells[colCodAutor.Index].Value = autor.CodAutor;
+                    row.Cells[colNomeAutor.Index].Value = autor.NomeAutor;
+                    row.Cells[colDescAutor.Index].Value = autor.Descricao;
+                }
             }
         }
 
-        //Método que faz com que apenas seja digitado números no campo do código.
-        public static void IntNumber(KeyPressEventArgs e)
+        //Recupera o próximo id a ser cadastrado e joga ele para o textBox.
+        private void CarregaID()
         {
-            if(!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            using (SqlConnection connection = DaoConnection.GetConexao())
             {
-                e.Handled = true;
-            }
-        }
 
-        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            IntNumber(e);
+                SqlCommand cm = new SqlCommand("SELECT IDENT_CURRENT('mvtBibAutor') + 1", connection);
+                int nextCod = Convert.ToInt32(cm.ExecuteScalar());
+
+                txtCodigo.Text = nextCod.ToString();
+            }
         }
 
         //Método que realiza o double click em uma linha da grid e joga todos os seus dados para as textBox.
-        private void gridInfoAutor_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void dtgDadosAutor_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(gridInfoAutor.SelectedRows.Count > 0) {
-                txtCodigo.Text = gridInfoAutor.SelectedRows[0].Cells[0].Value.ToString();
-                txtNome.Text = gridInfoAutor.SelectedRows[0].Cells[1].Value.ToString();
-                txtInfoAutor.Text = gridInfoAutor.SelectedRows[0].Cells[2].Value.ToString();
+            if(e.RowIndex > -1 && e.ColumnIndex > -1)
+            {
+                txtCodigo.Text = dtgDadosAutor.Rows[e.RowIndex].Cells[colCodAutor.Index].Value + "";
+                txtNome.Text = dtgDadosAutor.Rows[e.RowIndex].Cells[colNomeAutor.Index].Value + "";
+                txtInfoAutor.Text = dtgDadosAutor.Rows[e.RowIndex].Cells[colDescAutor.Index].Value + "";
 
                 if (string.IsNullOrEmpty(this.txtNome.Text))
                 {
@@ -319,21 +332,6 @@ namespace CadastroAutor
                     btnExcluir.Enabled = true;
                 }
             }
-       
-        }
-
-        //Recupera o próximo id a ser cadastrado e joga ele para o textBox.
-        private void CarregaID()
-        {
-            conn = Conexao();
-            conn.Open();
-
-            SqlCommand cm = new SqlCommand("SELECT IDENT_CURRENT('mvtBibAutor') + 1", conn);
-            int nextCod = Convert.ToInt32(cm.ExecuteScalar());
-
-            txtCodigo.Text = nextCod.ToString();
-
-            conn.Close();
         }
     }
 }

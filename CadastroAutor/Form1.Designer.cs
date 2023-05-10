@@ -28,20 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblNome = new System.Windows.Forms.Label();
             this.lblInfoAutor = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtInfoAutor = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.imgAutor = new System.Windows.Forms.PictureBox();
-            this.btnImgAutor = new System.Windows.Forms.Button();
-            this.gridInfoAutor = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.imgAutor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridInfoAutor)).BeginInit();
+            this.txtInfoAutor = new System.Windows.Forms.TextBox();
+            this.dtgDadosAutor = new System.Windows.Forms.DataGridView();
+            this.colCodAutor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNomeAutor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescAutor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDadosAutor)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNome
@@ -66,24 +65,19 @@
             // 
             // txtNome
             // 
+            this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNome.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtNome.Location = new System.Drawing.Point(133, 42);
             this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(431, 20);
+            this.txtNome.Size = new System.Drawing.Size(426, 20);
             this.txtNome.TabIndex = 3;
-            // 
-            // txtInfoAutor
-            // 
-            this.txtInfoAutor.Location = new System.Drawing.Point(133, 66);
-            this.txtInfoAutor.MaxLength = 1000;
-            this.txtInfoAutor.Name = "txtInfoAutor";
-            this.txtInfoAutor.Size = new System.Drawing.Size(431, 20);
-            this.txtInfoAutor.TabIndex = 4;
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(403, 98);
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvar.Location = new System.Drawing.Point(400, 92);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(77, 22);
             this.btnSalvar.TabIndex = 5;
@@ -93,7 +87,8 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(485, 98);
+            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.Location = new System.Drawing.Point(482, 92);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(77, 22);
             this.btnExcluir.TabIndex = 6;
@@ -113,71 +108,72 @@
             // 
             // txtCodigo
             // 
+            this.txtCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodigo.Enabled = false;
             this.txtCodigo.Location = new System.Drawing.Point(133, 18);
             this.txtCodigo.MaxLength = 3;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(143, 20);
+            this.txtCodigo.Size = new System.Drawing.Size(62, 20);
             this.txtCodigo.TabIndex = 8;
-            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
-            // imgAutor
+            // txtInfoAutor
             // 
-            this.imgAutor.BackColor = System.Drawing.SystemColors.Control;
-            this.imgAutor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.imgAutor.Location = new System.Drawing.Point(576, 6);
-            this.imgAutor.Name = "imgAutor";
-            this.imgAutor.Size = new System.Drawing.Size(69, 75);
-            this.imgAutor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imgAutor.TabIndex = 9;
-            this.imgAutor.TabStop = false;
+            this.txtInfoAutor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInfoAutor.Location = new System.Drawing.Point(133, 66);
+            this.txtInfoAutor.MaxLength = 1000;
+            this.txtInfoAutor.Name = "txtInfoAutor";
+            this.txtInfoAutor.Size = new System.Drawing.Size(426, 20);
+            this.txtInfoAutor.TabIndex = 4;
             // 
-            // btnImgAutor
+            // dtgDadosAutor
             // 
-            this.btnImgAutor.Location = new System.Drawing.Point(568, 98);
-            this.btnImgAutor.Name = "btnImgAutor";
-            this.btnImgAutor.Size = new System.Drawing.Size(77, 22);
-            this.btnImgAutor.TabIndex = 10;
-            this.btnImgAutor.Text = "Carregar";
-            this.btnImgAutor.UseVisualStyleBackColor = false;
-            this.btnImgAutor.Click += new System.EventHandler(this.btnImgAutor_click);
+            this.dtgDadosAutor.AllowUserToAddRows = false;
+            this.dtgDadosAutor.AllowUserToDeleteRows = false;
+            this.dtgDadosAutor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgDadosAutor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgDadosAutor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgDadosAutor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colCodAutor,
+            this.colNomeAutor,
+            this.colDescAutor});
+            this.dtgDadosAutor.Location = new System.Drawing.Point(9, 121);
+            this.dtgDadosAutor.MultiSelect = false;
+            this.dtgDadosAutor.Name = "dtgDadosAutor";
+            this.dtgDadosAutor.ReadOnly = true;
+            this.dtgDadosAutor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgDadosAutor.Size = new System.Drawing.Size(555, 197);
+            this.dtgDadosAutor.TabIndex = 11;
+            this.dtgDadosAutor.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosAutor_CellDoubleClick);
             // 
-            // gridInfoAutor
+            // colCodAutor
             // 
-            this.gridInfoAutor.AllowUserToDeleteRows = false;
-            this.gridInfoAutor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridInfoAutor.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.gridInfoAutor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridInfoAutor.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridInfoAutor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.gridInfoAutor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridInfoAutor.GridColor = System.Drawing.SystemColors.Control;
-            this.gridInfoAutor.Location = new System.Drawing.Point(9, 126);
-            this.gridInfoAutor.MultiSelect = false;
-            this.gridInfoAutor.Name = "gridInfoAutor";
-            this.gridInfoAutor.ReadOnly = true;
-            this.gridInfoAutor.RowHeadersWidth = 62;
-            this.gridInfoAutor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridInfoAutor.Size = new System.Drawing.Size(637, 148);
-            this.gridInfoAutor.TabIndex = 11;
-            this.gridInfoAutor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gridInfoAutor_MouseDoubleClick);
+            this.colCodAutor.HeaderText = "Código";
+            this.colCodAutor.Name = "colCodAutor";
+            this.colCodAutor.ReadOnly = true;
+            // 
+            // colNomeAutor
+            // 
+            this.colNomeAutor.HeaderText = "Nome";
+            this.colNomeAutor.Name = "colNomeAutor";
+            this.colNomeAutor.ReadOnly = true;
+            // 
+            // colDescAutor
+            // 
+            this.colDescAutor.HeaderText = "Info. Autor";
+            this.colDescAutor.Name = "colDescAutor";
+            this.colDescAutor.ReadOnly = true;
             // 
             // FormCadAutor
             // 
             this.AcceptButton = this.btnSalvar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 282);
-            this.Controls.Add(this.gridInfoAutor);
-            this.Controls.Add(this.btnImgAutor);
-            this.Controls.Add(this.imgAutor);
+            this.ClientSize = new System.Drawing.Size(571, 330);
+            this.Controls.Add(this.dtgDadosAutor);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.lblCodigo);
             this.Controls.Add(this.btnExcluir);
@@ -191,8 +187,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Novo Usuário";
             this.Load += new System.EventHandler(this.FormCadAutor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.imgAutor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridInfoAutor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDadosAutor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,14 +197,15 @@
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.Label lblInfoAutor;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox txtInfoAutor;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.PictureBox imgAutor;
-        private System.Windows.Forms.Button btnImgAutor;
-        private System.Windows.Forms.DataGridView gridInfoAutor;
+        private System.Windows.Forms.TextBox txtInfoAutor;
+        private System.Windows.Forms.DataGridView dtgDadosAutor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCodAutor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNomeAutor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescAutor;
     }
 }
 
