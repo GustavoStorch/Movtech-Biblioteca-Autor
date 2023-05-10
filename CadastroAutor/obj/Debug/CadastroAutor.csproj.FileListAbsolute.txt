@@ -53,3 +53,14 @@ C:\Users\estagiario1\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\Cadast
 C:\Users\estagiario1\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.csproj.CoreCompileInputs.cache
 C:\Users\estagiario1\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.exe
 C:\Users\estagiario1\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.pdb
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\bin\Debug\CadastroAutor.exe.config
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\bin\Debug\CadastroAutor.exe
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\bin\Debug\CadastroAutor.pdb
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.csproj.AssemblyReference.cache
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.csproj.SuggestedBindingRedirects.cache
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.FormCadAutor.resources
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.Properties.Resources.resources
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.csproj.GenerateResource.cache
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.csproj.CoreCompileInputs.cache
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.exe
+C:\Users\Gustavo\Documents\Movtech\Projeto 1\Movtech-Biblioteca-Autor\CadastroAutor\obj\Debug\CadastroAutor.pdb

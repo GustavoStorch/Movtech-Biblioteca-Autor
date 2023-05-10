@@ -37,9 +37,9 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtInfoAutor = new System.Windows.Forms.TextBox();
             this.dtgDadosAutor = new System.Windows.Forms.DataGridView();
-            this.colCodAutor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNomeAutor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDescAutor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNomeAutor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCodAutor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosAutor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,11 +149,11 @@
             this.dtgDadosAutor.TabIndex = 11;
             this.dtgDadosAutor.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosAutor_CellDoubleClick);
             // 
-            // colCodAutor
+            // colDescAutor
             // 
-            this.colCodAutor.HeaderText = "Código";
-            this.colCodAutor.Name = "colCodAutor";
-            this.colCodAutor.ReadOnly = true;
+            this.colDescAutor.HeaderText = "Info. Autor";
+            this.colDescAutor.Name = "colDescAutor";
+            this.colDescAutor.ReadOnly = true;
             // 
             // colNomeAutor
             // 
@@ -161,11 +161,11 @@
             this.colNomeAutor.Name = "colNomeAutor";
             this.colNomeAutor.ReadOnly = true;
             // 
-            // colDescAutor
+            // colCodAutor
             // 
-            this.colDescAutor.HeaderText = "Info. Autor";
-            this.colDescAutor.Name = "colDescAutor";
-            this.colDescAutor.ReadOnly = true;
+            this.colCodAutor.HeaderText = "Código";
+            this.colCodAutor.Name = "colCodAutor";
+            this.colCodAutor.ReadOnly = true;
             // 
             // FormCadAutor
             // 

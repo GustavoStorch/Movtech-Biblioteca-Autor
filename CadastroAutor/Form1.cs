@@ -91,11 +91,11 @@ namespace CadastroAutor
                 return;
             }
 
-            try
+                try
             {
                 using(SqlConnection connection = DaoConnection.GetConexao())
                 {
-                    AutorDAO dao = new AutorDAO(connection);
+                    AutorDAO dao = new AutorDAO(connection);;
 
                     string sql2 = "SELECT COUNT(*) FROM mvtBibAutor WHERE codAutor = @codAutor";
                     SqlCommand cmdSelect = new SqlCommand(sql2, connection);
@@ -253,20 +253,26 @@ namespace CadastroAutor
                 return;
             }
 
+            DialogResult conf = MessageBox.Show("Tem certeza que deseja excluir o Autor?", "Ops, tem certeza?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
             try
             {
-                using (SqlConnection connection = DaoConnection.GetConexao())
+                if (conf == DialogResult.Yes)
                 {
-                    AutorDAO dao = new AutorDAO(connection);
-                    dao.Excluir(new AutorModel()
+                    using (SqlConnection connection = DaoConnection.GetConexao())
                     {
-                        CodAutor = txtCodigo.Text 
-                    });
+                        AutorDAO dao = new AutorDAO(connection);
+
+                        dao.Excluir(new AutorModel()
+                        {
+                            CodAutor = txtCodigo.Text
+                        });
+                    }
+                    MessageBox.Show("Autor excluído com sucesso!");
+                    InitializeTable();
+                    limparForm();
+                    CarregaID();
                 }
-                MessageBox.Show("Autor excluído com sucesso!");
-                InitializeTable();
-                limparForm();
-                CarregaID();
             }
             catch (Exception ex)
             {
