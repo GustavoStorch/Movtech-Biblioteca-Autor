@@ -98,10 +98,10 @@ namespace CadastroAutor
                 {
                     AutorDAO dao = new AutorDAO(connection);
 
-                    string sql2 = "SELECT COUNT(*) FROM mvtBibAutor WHERE codAutor = @codAutor";
-                    SqlCommand cmdSelect = new SqlCommand(sql2, connection);
-                    cmdSelect.Parameters.AddWithValue("@codAutor", txtCodigo.Text);
-                    int count = Convert.ToInt32(cmdSelect.ExecuteScalar());
+                    int count = dao.VerificaRegistros(new AutorModel()
+                    {
+                        CodAutor = txtCodigo.Text
+                    });
 
                     if(count > 0)
                     {
@@ -128,7 +128,7 @@ namespace CadastroAutor
                 InitializeTable();
                 limparForm();
                 CarregaID();
-                  btnExcluir.Enabled = false;
+                btnExcluir.Enabled = false;
             }
             catch (Exception ex)
             {

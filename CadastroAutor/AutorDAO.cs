@@ -82,6 +82,19 @@ namespace CadastroAutor
             }
         }
 
+        public int VerificaRegistros(AutorModel autor)
+        {
+            using (SqlCommand command = Connection.CreateCommand())
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine($"SELECT COUNT(*) FROM mvtBibAutor WHERE codAutor = @codAutor");
+                command.CommandText = sql.ToString();
+                command.Parameters.AddWithValue("@codAutor", autor.CodAutor);
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count;
+            }
+        }
+
         public List<AutorModel> GetAutores()
         {
             List<AutorModel> autores = new List<AutorModel>();
