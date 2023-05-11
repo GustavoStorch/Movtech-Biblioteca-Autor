@@ -25,8 +25,6 @@ namespace CadastroAutor
                 SqlTransaction t = Connection.BeginTransaction();
                 try
                 {
-                    //Excluir(autor, t);
-
                     StringBuilder sql = new StringBuilder();
                     sql.AppendLine($"INSERT INTO mvtBibAutor(nomeAutor, descricao) VALUES(@nomeAutor, @descricao)");
                     command.CommandText = sql.ToString();

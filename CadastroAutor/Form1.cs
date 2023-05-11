@@ -91,11 +91,12 @@ namespace CadastroAutor
                 return;
             }
 
-                try
+
+            try
             {
                 using(SqlConnection connection = DaoConnection.GetConexao())
                 {
-                    AutorDAO dao = new AutorDAO(connection);;
+                    AutorDAO dao = new AutorDAO(connection);
 
                     string sql2 = "SELECT COUNT(*) FROM mvtBibAutor WHERE codAutor = @codAutor";
                     SqlCommand cmdSelect = new SqlCommand(sql2, connection);
@@ -127,6 +128,7 @@ namespace CadastroAutor
                 InitializeTable();
                 limparForm();
                 CarregaID();
+                btnExcluir.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -272,6 +274,7 @@ namespace CadastroAutor
                     InitializeTable();
                     limparForm();
                     CarregaID();
+                    btnExcluir.Enabled = false;
                 }
             }
             catch (Exception ex)
