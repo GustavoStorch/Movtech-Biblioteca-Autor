@@ -128,7 +128,7 @@ namespace CadastroAutor
                 InitializeTable();
                 limparForm();
                 CarregaID();
-                btnExcluir.Enabled = false;
+                  btnExcluir.Enabled = false;
             }
             catch (Exception ex)
             {
