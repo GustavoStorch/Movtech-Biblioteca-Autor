@@ -111,7 +111,7 @@ namespace CadastroAutor
                             NomeAutor = txtNome.Text,
                             Descricao = txtInfoAutor.Text
                         });
-
+                        MessageBox.Show("Autor atualizado com sucesso!");
                     } else
                     {
                         dao.Salvar(new AutorModel()
@@ -120,8 +120,9 @@ namespace CadastroAutor
                             NomeAutor = txtNome.Text,
                             Descricao = txtInfoAutor.Text
                         });
+                        MessageBox.Show("Autor salvo com sucesso!");
                     }
-                    MessageBox.Show("Autor salvo com sucesso!");
+                    
                 }
 
                     
