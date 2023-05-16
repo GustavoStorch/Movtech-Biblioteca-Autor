@@ -93,6 +93,22 @@ namespace CadastroAutor
                 int count = Convert.ToInt32(command.ExecuteScalar());
                 return count;
             }
+        } 
+
+        public bool VerificaCampos(AutorModel autor)
+        {
+            if (string.IsNullOrEmpty(autor.CodAutor) || string.IsNullOrWhiteSpace(autor.CodAutor))
+            {
+                MessageBox.Show("Informe o campo do Código do Autor");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(autor.NomeAutor) || string.IsNullOrWhiteSpace(autor.NomeAutor))
+            {
+                MessageBox.Show("Informe o campo do Nome do Autor");
+                return false;
+            }
+
+            return true;
         }
 
         public List<AutorModel> GetAutores()

@@ -35,97 +35,52 @@ namespace CadastroAutor
             btnExcluir.Enabled = false;
         }
 
-        /*private void btnImgAutor_click(object sender, EventArgs e)
-        {
-            carregarFoto();
-        }
-
-        private void carregarFoto()
-        {
-            var openFile = new OpenFileDialog();
-            openFile.Filter = "Arquivos de imagens jpg e png| *.jpg; *.png";
-            openFile.Multiselect = false;
-
-            if (openFile.ShowDialog() == DialogResult.OK)
-            {
-                caminhoFoto = openFile.FileName;
-            }
-
-            if (caminhoFoto != "")
-            {
-                imgAutor.Load(caminhoFoto);
-            }
-        }
-
-        private byte[] GetFoto(String caminhoFoto)
-        {
-            try
-            {
-                byte[] foto;
-                using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
-                {
-                    using (var reader = new BinaryReader(stream))
-                    {
-                        foto = reader.ReadBytes((int)stream.Length);
-                    }
-                }
-                return foto;
-            } catch(Exception ex) { }
-            {
-                return null;
-            }
-            
-        }*/
-
         //Botão com a funcionalidade de salvar/persistir os dados inseridos no banco de dados.
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
-            if (string.IsNullOrEmpty(txtCodigo.Text) || string.IsNullOrWhiteSpace(txtCodigo.Text))
-            {
-                MessageBox.Show("Informe o campo do Código do Autor");
-                return;
-            } else if (string.IsNullOrEmpty(txtNome.Text) || string.IsNullOrWhiteSpace(txtNome.Text))
-            {
-                MessageBox.Show("Informe o campo do Nome do Autor");
-                return;
-            }
-
-
             try
             {
                 using(SqlConnection connection = DaoConnection.GetConexao())
                 {
                     AutorDAO dao = new AutorDAO(connection);
 
-                    int count = dao.VerificaRegistros(new AutorModel()
+                    bool verificaCampos = dao.VerificaCampos(new AutorModel()
                     {
-                        CodAutor = txtCodigo.Text
+                        CodAutor = txtCodigo.Text,
+                        NomeAutor = txtNome.Text
                     });
 
-                    if(count > 0)
+                    if(verificaCampos)
                     {
-                        dao.Editar(new AutorModel()
+                        int count = dao.VerificaRegistros(new AutorModel()
                         {
-                            CodAutor = txtCodigo.Text,
-                            NomeAutor = txtNome.Text,
-                            Descricao = txtInfoAutor.Text
+                            CodAutor = txtCodigo.Text
+
                         });
-                        MessageBox.Show("Autor atualizado com sucesso!");
-                    } else
-                    {
-                        dao.Salvar(new AutorModel()
+
+                        if (count > 0)
                         {
-                            CodAutor = txtCodigo.Text,
-                            NomeAutor = txtNome.Text,
-                            Descricao = txtInfoAutor.Text
-                        });
-                        MessageBox.Show("Autor salvo com sucesso!");
+                            dao.Editar(new AutorModel()
+                            {
+                                CodAutor = txtCodigo.Text,
+                                NomeAutor = txtNome.Text,
+                                Descricao = txtInfoAutor.Text
+                            });
+                            MessageBox.Show("Autor atualizado com sucesso!");
+                        }
+                        else
+                        {
+                            dao.Salvar(new AutorModel()
+                            {
+                                CodAutor = txtCodigo.Text,
+                                NomeAutor = txtNome.Text,
+                                Descricao = txtInfoAutor.Text
+                            });
+                            MessageBox.Show("Autor salvo com sucesso!");
+                        }
                     }
-                    
                 }
 
-                    
                 InitializeTable();
                 limparForm();
                 CarregaID();
@@ -135,127 +90,11 @@ namespace CadastroAutor
             {
                 MessageBox.Show($"Houve um problema ao salvar o usuário!\n{ex.Message}");
             }
-
-
-
-            /*try
-            {
-                //Verifica se o campo do código está vazio e realiza o insert.
-                if (string.IsNullOrEmpty(this.txtCodigo.Text))
-                {
-                    sql = "INSERT INTO mvtBibAutor(nomeAutor, descricao, fotoAutor) VALUES(@nomeAutor, @descricao, @fotoAutor)";
-                    SqlCommand c = new SqlCommand(sql, conn);
-
-                    if (String.IsNullOrWhiteSpace(txtNome.Text))
-                    {
-                        MessageBox.Show("Erro: Preencha o nome do Autor!");
-                    } else
-                    {
-                        c.Parameters.Add(new SqlParameter("@nomeAutor", this.txtNome.Text));
-                    }
-                    
-                    c.Parameters.Add(new SqlParameter("@descricao", this.txtInfoAutor.Text));
-                    c.Parameters.Add("@fotoAutor", System.Data.SqlDbType.Image, foto.Length).Value = foto;
-
-                    conn.Open();
-                    c.ExecuteNonQuery();
-                    conn.Close();
-
-                    MessageBox.Show("Enviado com sucesso!");
-
-                    limparForm();
-                    InitializeTable();
-                    CarregaID();
-                } else
-                {
-                    //Verifica se o código presente no textbox já está registrado dentro do banco de dados.
-                    conn.Open();
-                    string sql2 = "SELECT COUNT(*) FROM mvtBibAutor WHERE codAutor = @codAutor";
-                    SqlCommand cmdSelect = new SqlCommand(sql2, conn);
-                    cmdSelect.Parameters.AddWithValue("@codAutor", txtCodigo.Text);
-                    int count = Convert.ToInt32(cmdSelect.ExecuteScalar());
-                    conn.Close();
-
-                    //Se o código estiver registrado no banco de dados realiza apenas o update.
-                    if (count > 0)
-                    {
-                        sql = "UPDATE mvtBibAutor SET nomeAutor = @nomeAutor, descricao = @descricao, fotoAutor = @fotoAutor WHERE codAutor = @codAutor";
-                        SqlCommand c = new SqlCommand(sql, conn);
-
-                        c.Parameters.AddWithValue("@codAutor", txtCodigo.Text);
-
-                        if (String.IsNullOrWhiteSpace(txtNome.Text))
-                        {
-                            MessageBox.Show("Erro: Preencha o nome do Autor!");
-                        }
-                        else
-                        {
-                            c.Parameters.Add(new SqlParameter("@nomeAutor", this.txtNome.Text));
-                        }
-
-                        c.Parameters.Add(new SqlParameter("@descricao", this.txtInfoAutor.Text));
-                        c.Parameters.Add("@fotoAutor", System.Data.SqlDbType.Image, foto.Length).Value = foto;
-
-                        conn.Open();
-                        c.ExecuteNonQuery();
-                        conn.Close();
-
-                        MessageBox.Show("Atualizado com sucesso!");
-
-                        limparForm();
-                        InitializeTable();
-                        CarregaID();
-                        btnAtivo = false;
-                        botaoAtivado();
-                    } else
-                    {
-                        //Se não estiver registrado no banco de dados realiza o insert.
-                        sql = "INSERT INTO mvtBibAutor(nomeAutor, descricao, fotoAutor) VALUES(@nomeAutor, @descricao, @fotoAutor)";
-                        SqlCommand c = new SqlCommand(sql, conn);
-
-                        if (String.IsNullOrWhiteSpace(txtNome.Text))
-                        {
-                            MessageBox.Show("Erro: Preencha o nome do Autor!");
-                        }
-                        else
-                        {
-                            c.Parameters.Add(new SqlParameter("@nomeAutor", this.txtNome.Text));
-                        }
-
-                        c.Parameters.Add(new SqlParameter("@descricao", this.txtInfoAutor.Text));
-                        c.Parameters.Add("@fotoAutor", System.Data.SqlDbType.Image, foto.Length).Value = foto;
-
-                        conn.Open();
-                        c.ExecuteNonQuery();
-                        conn.Close();
-
-                        MessageBox.Show("Enviado com sucesso!");
-
-                        limparForm();
-                        InitializeTable();
-                        CarregaID();
-                    }
-                }             
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Ocorreu o erro: " + ex);
-            }
-            finally
-            {
-                conn.Close();
-            }*/
         }
 
         //Botão que realiza o Delete de um registro no banco de dados.
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNome.Text))
-            {
-                MessageBox.Show("Informe o Autor!");
-                return;
-            }
-
             DialogResult conf = MessageBox.Show("Tem certeza que deseja excluir o Autor?", "Ops, tem certeza?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             try
@@ -266,12 +105,23 @@ namespace CadastroAutor
                     {
                         AutorDAO dao = new AutorDAO(connection);
 
-                        dao.Excluir(new AutorModel()
+                        bool verificaCampos = dao.VerificaCampos(new AutorModel()
                         {
-                            CodAutor = txtCodigo.Text
+                            CodAutor = txtCodigo.Text,
+                            NomeAutor = txtNome.Text
                         });
+
+                        if (verificaCampos)
+                        {
+
+                            dao.Excluir(new AutorModel()
+                            {
+                                CodAutor = txtCodigo.Text
+                            });
+                            MessageBox.Show("Autor excluído com sucesso!");
+                        }
                     }
-                    MessageBox.Show("Autor excluído com sucesso!");
+                    
                     InitializeTable();
                     limparForm();
                     CarregaID();

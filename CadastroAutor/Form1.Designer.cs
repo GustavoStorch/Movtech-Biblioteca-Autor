@@ -47,10 +47,9 @@
             // 
             this.lblNome.AccessibleName = "";
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(8, 46);
-            this.lblNome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNome.Location = new System.Drawing.Point(5, 30);
             this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(55, 20);
+            this.lblNome.Size = new System.Drawing.Size(38, 13);
             this.lblNome.TabIndex = 1;
             this.lblNome.Text = "Nome:";
             // 
@@ -58,10 +57,9 @@
             // 
             this.lblInfoAutor.AccessibleName = "";
             this.lblInfoAutor.AutoSize = true;
-            this.lblInfoAutor.Location = new System.Drawing.Point(8, 83);
-            this.lblInfoAutor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInfoAutor.Location = new System.Drawing.Point(5, 54);
             this.lblInfoAutor.Name = "lblInfoAutor";
-            this.lblInfoAutor.Size = new System.Drawing.Size(167, 20);
+            this.lblInfoAutor.Size = new System.Drawing.Size(111, 13);
             this.lblInfoAutor.TabIndex = 2;
             this.lblInfoAutor.Text = "Informações do Autor:";
             // 
@@ -69,22 +67,22 @@
             // 
             this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNome.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNome.Location = new System.Drawing.Point(199, 43);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNome.Location = new System.Drawing.Point(133, 28);
             this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(648, 26);
-            this.txtNome.TabIndex = 3;
+            this.txtNome.Size = new System.Drawing.Size(433, 20);
+            this.txtNome.TabIndex = 2;
             // 
             // btnSalvar
             // 
             this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvar.Location = new System.Drawing.Point(601, 120);
-            this.btnSalvar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSalvar.Location = new System.Drawing.Point(401, 78);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(116, 34);
-            this.btnSalvar.TabIndex = 5;
+            this.btnSalvar.Size = new System.Drawing.Size(77, 22);
+            this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -92,10 +90,9 @@
             // btnExcluir
             // 
             this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcluir.Location = new System.Drawing.Point(724, 120);
-            this.btnExcluir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnExcluir.Location = new System.Drawing.Point(483, 78);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(116, 34);
+            this.btnExcluir.Size = new System.Drawing.Size(77, 22);
             this.btnExcluir.TabIndex = 6;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -105,35 +102,30 @@
             // 
             this.lblCodigo.AccessibleName = "";
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(8, 9);
-            this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigo.Location = new System.Drawing.Point(5, 6);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(63, 20);
+            this.lblCodigo.Size = new System.Drawing.Size(43, 13);
             this.lblCodigo.TabIndex = 7;
             this.lblCodigo.Text = "Código:";
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(199, 6);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCodigo.Location = new System.Drawing.Point(133, 3);
             this.txtCodigo.MaxLength = 3;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(93, 26);
-            this.txtCodigo.TabIndex = 8;
+            this.txtCodigo.Size = new System.Drawing.Size(38, 20);
+            this.txtCodigo.TabIndex = 1;
             // 
             // txtInfoAutor
             // 
             this.txtInfoAutor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInfoAutor.Location = new System.Drawing.Point(199, 80);
-            this.txtInfoAutor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtInfoAutor.Location = new System.Drawing.Point(133, 52);
             this.txtInfoAutor.MaxLength = 1000;
             this.txtInfoAutor.Name = "txtInfoAutor";
-            this.txtInfoAutor.Size = new System.Drawing.Size(648, 26);
-            this.txtInfoAutor.TabIndex = 4;
+            this.txtInfoAutor.Size = new System.Drawing.Size(433, 20);
+            this.txtInfoAutor.TabIndex = 3;
             // 
             // dtgDadosAutor
             // 
@@ -148,19 +140,19 @@
             this.colCodAutor,
             this.colNomeAutor,
             this.colDescAutor});
-            this.dtgDadosAutor.Location = new System.Drawing.Point(12, 164);
-            this.dtgDadosAutor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtgDadosAutor.Location = new System.Drawing.Point(8, 107);
             this.dtgDadosAutor.MultiSelect = false;
             this.dtgDadosAutor.Name = "dtgDadosAutor";
             this.dtgDadosAutor.ReadOnly = true;
             this.dtgDadosAutor.RowHeadersWidth = 62;
             this.dtgDadosAutor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgDadosAutor.Size = new System.Drawing.Size(835, 328);
-            this.dtgDadosAutor.TabIndex = 11;
+            this.dtgDadosAutor.Size = new System.Drawing.Size(558, 211);
+            this.dtgDadosAutor.TabIndex = 7;
             this.dtgDadosAutor.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosAutor_CellDoubleClick);
             // 
             // colCodAutor
             // 
+            this.colCodAutor.FillWeight = 20F;
             this.colCodAutor.HeaderText = "Código";
             this.colCodAutor.MinimumWidth = 8;
             this.colCodAutor.Name = "colCodAutor";
@@ -168,6 +160,7 @@
             // 
             // colNomeAutor
             // 
+            this.colNomeAutor.FillWeight = 70F;
             this.colNomeAutor.HeaderText = "Nome";
             this.colNomeAutor.MinimumWidth = 8;
             this.colNomeAutor.Name = "colNomeAutor";
@@ -183,9 +176,9 @@
             // FormCadAutor
             // 
             this.AcceptButton = this.btnSalvar;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(858, 495);
+            this.ClientSize = new System.Drawing.Size(572, 322);
             this.Controls.Add(this.dtgDadosAutor);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.lblCodigo);
@@ -195,7 +188,6 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.lblInfoAutor);
             this.Controls.Add(this.lblNome);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimizeBox = false;
             this.Name = "FormCadAutor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
