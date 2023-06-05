@@ -77,17 +77,17 @@
             this.txtNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(649, 26);
-            this.txtNome.TabIndex = 2;
+            this.txtNome.Size = new System.Drawing.Size(659, 26);
+            this.txtNome.TabIndex = 1;
             // 
             // btnSalvar
             // 
             this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvar.Location = new System.Drawing.Point(611, 140);
+            this.btnSalvar.Location = new System.Drawing.Point(621, 140);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(116, 34);
-            this.btnSalvar.TabIndex = 4;
+            this.btnSalvar.TabIndex = 3;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -95,11 +95,11 @@
             // btnExcluir
             // 
             this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcluir.Location = new System.Drawing.Point(733, 140);
+            this.btnExcluir.Location = new System.Drawing.Point(743, 140);
             this.btnExcluir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(116, 34);
-            this.btnExcluir.TabIndex = 6;
+            this.btnExcluir.TabIndex = 4;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -134,8 +134,8 @@
             this.txtInfoAutor.MaxLength = 1000;
             this.txtInfoAutor.Multiline = true;
             this.txtInfoAutor.Name = "txtInfoAutor";
-            this.txtInfoAutor.Size = new System.Drawing.Size(649, 50);
-            this.txtInfoAutor.TabIndex = 3;
+            this.txtInfoAutor.Size = new System.Drawing.Size(659, 50);
+            this.txtInfoAutor.TabIndex = 2;
             // 
             // dtgDadosAutor
             // 
@@ -157,8 +157,8 @@
             this.dtgDadosAutor.ReadOnly = true;
             this.dtgDadosAutor.RowHeadersWidth = 62;
             this.dtgDadosAutor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgDadosAutor.Size = new System.Drawing.Size(836, 330);
-            this.dtgDadosAutor.TabIndex = 7;
+            this.dtgDadosAutor.Size = new System.Drawing.Size(846, 330);
+            this.dtgDadosAutor.TabIndex = 5;
             this.dtgDadosAutor.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDadosAutor_CellDoubleClick);
             // 
             // colCodAutor
@@ -189,7 +189,7 @@
             this.AcceptButton = this.btnSalvar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(858, 528);
+            this.ClientSize = new System.Drawing.Size(868, 528);
             this.Controls.Add(this.dtgDadosAutor);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.lblCodigo);
